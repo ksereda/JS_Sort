@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8">
+    <title>Sort page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+	<!-- CSS -->
+	<link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body link="white">
+	<div id="wrapper"> 
+     	<div class="loginmenu">
+            <ul class="contact_form">
+            	<span class="hello">Hello, this is Insertion Sorting :)</span>
+            	<br>
+            	<br>
+              <li class="inputform">
+                <input class="inputnumbers" id="input" required type="numbers" name="numbers" placeholder="Please enter numbers separated by commas and press the Sort button" size="69">
+              </li>
+              <br>
+              <li>
+                <button class="button" id="startcalculate" type="submit">SORT</button>
+              </li>
+            </ul>  
+     	</div> 
+     	<div class="row">
+        	<div class="resultinfo">
+            	<div id="sort"></div>
+            	<div id="count"></div>
+        	</div>
+     	</div>
+    </div>
+
+    <script>
+    $(function(){
+        var count = 0;
+        $('#startcalculate').click(function(){
+            let data = $('#input').val();
+            let array = data.split(',').map(item=> parseInt(item)).filter(x=>x);
+            if(array.length<1) {
+                alert("Error: Please enter numbers");
+            }
+            sort(array)
+            $('#sort').text("Your result: "+array);
+            $('#count').text("Number of steps = "+count);
+            count = 0;
+        });
+
+    function sort(array)       
+	{                               
+    var n = array.length;
+    for (var i = 0; i < n; i++)
+     { 
+     	var v = array[ i ], j = i-1;
+       while (j >= 0 && array[j] > v)
+        { array[j+1] = array[j]; 
+        	j--; 
+        }
+       array[j+1] = v;
+       count = count+1;
+     }                    
+    return array;    
+	}
+	});
+
+	</script>
+  </body>
+</html>	
+
